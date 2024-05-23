@@ -5,14 +5,14 @@ import model.exceptions.DomainException;
 public class Account {
 	private Integer number;
 	private String holder;
-	private Double balance;
+	private Double balance = 0.00;
 	private Double withdrawLimit;
 
-	public void deposit(Double deposit) {
-		balance += deposit;
+	public void deposit(Double balance) {
+		this.balance += balance;
 	}
 
-	public void withdraw(Double withdraw) throws DomainException {
+	public void withdraw(Double withdraw) {
 		if (withdraw > withdrawLimit) {
 			throw new DomainException("The amount exceeds withdraw limit");
 		}
@@ -22,10 +22,9 @@ public class Account {
 		balance -= withdraw;
 	}
 
-	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
+	public Account(Integer number, String holder, Double withdrawLimit) {
 		this.number = number;
 		this.holder = holder;
-		this.balance = balance;
 		this.withdrawLimit = withdrawLimit;
 	}
 
